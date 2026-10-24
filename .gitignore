@@ -1,0 +1,12 @@
+# Virtual environments
+.venv/
+
+# Python cache
+__pycache__/
+
+# Logs and temporary files
+*.log
+output/*.tmp
+
+# Local data files
+data/
