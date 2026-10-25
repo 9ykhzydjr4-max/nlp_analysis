@@ -6,6 +6,7 @@ import nltk
 import spacy
 from os import path
 from pathlib import Path
+from collections import Counter
 
 # %% Lokale Daten einlesen
 PROJECT = Path(__file__).parent if "__file__" in globals() else Path.cwd()
@@ -43,8 +44,8 @@ def clean_text(text):
     return text
 
 dataframe["cleaned_narrative"] = dataframe["narrative"].apply(clean_text)
-print("Beispiel für bereinigten Text:", dataframe["cleaned_narrative"].str.contains(r"[^a-zA-Z\s]").sum())
-print("Beispiel für bereinigten Text:", dataframe["cleaned_narrative"].str.contains(r"\s+").sum())
+print("Beispiel für bereinigte Sonderzeichen:", dataframe["cleaned_narrative"].str.contains(r"[^a-zA-Z\s]").sum())
+print("Beispiel für bereinigte Leerzeichen:", dataframe["cleaned_narrative"].str.contains(r"\s+").sum())
 
 # %% Stoppwörter entfernen
 nltk.download("stopwords", quiet=True)
@@ -64,6 +65,11 @@ stoppwoerter = (stoppwoerter | eigene) - verneinungen
 print("Anzahl der Stoppwörter:", len(stoppwoerter))
 
 # %% Lemmatisierung
+TESTING = True
+
+if TESTING:
+    dataframe = dataframe.sample(n=1000, random_state=42)  # Für Testzwecke eine Stichprobe von 1000 Dokumenten ziehen
+
 nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])  # Lade das englische Modell ohne Parser und NER
 
 tokens_list = []
@@ -72,7 +78,7 @@ for document in nlp.pipe(dataframe["cleaned_narrative"], batch_size=1000):
     tokens_list.append(tokens)
 
 dataframe["tokens"] = tokens_list
-dataframe["cleaned_narrative"] =dataframe["cleaned_narrative"].str.join(" ")
+dataframe["cleaned_narrative"] =dataframe["tokens"].str.join(" ")
 
 dataframe = dataframe[dataframe["tokens"].str.len() >= 5]  # Filtere Dokumente mit weniger als 5 Tokens heraus
 print("Datensätze nach Lemmatisierung und Stoppwortentfernung:", len(dataframe))
@@ -82,7 +88,6 @@ print("Rohtext Beispiel:", dataframe["narrative"].iloc[0][:300])
 print("Bereinigter Text Beispiel:", dataframe["cleaned_narrative"].iloc[0][:300])
 
 # %% häufig vorkommende Wörter
-from collections import Counter
 zaehler = Counter(wort for liste in dataframe["tokens"] for wort in liste)
 print("Häufigste Wörter:", zaehler.most_common(25))
 
