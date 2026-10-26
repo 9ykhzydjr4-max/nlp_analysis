@@ -16,7 +16,7 @@ PROJECT = Path(__file__).parent
 SKRIPTE = [
     "01_vorverarbeitung.py",
     "02_vektorisierung.py",
-    "03_themenextration.py",
+    "03_themenextraktion.py",
 ]
 
 def skript_ausfuehren(nummer, name):

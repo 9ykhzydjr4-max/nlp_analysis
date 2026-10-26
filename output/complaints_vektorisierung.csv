@@ -1,16 +1,16 @@
 BoW_Wort,BoW_Anzahl,TFIDF_Wort,TFIDF_Gewicht
-payment,1040,payment,44.1
-information,874,credit report,36.0
-receive,706,debt,33.7
-pay,667,pay,33.5
-send,626,card,33.3
-credit report,603,information,32.0
-card,594,send,31.2
-loan,585,receive,29.7
-debt,583,dispute,29.2
-dispute,570,company,28.5
-company,532,loan,28.5
-request,484,bank,26.5
-date,476,letter,26.3
-bank,456,remove,24.7
-letter,453,collection,23.8
+payment,118211,payment,4321.6
+information,104079,credit report,3330.1
+receive,81770,information,3293.9
+pay,81042,pay,3214.7
+send,73762,debt,3190.2
+loan,70692,card,3085.5
+credit report,70429,company,3000.9
+company,67770,loan,2968.8
+card,66700,bank,2908.7
+bank,65921,send,2905.5
+dispute,65269,receive,2847.3
+debt,62368,dispute,2830.9
+request,58900,remove,2510.9
+letter,56309,letter,2491.5
+state,50532,never,2292.0
