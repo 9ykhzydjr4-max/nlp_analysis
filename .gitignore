@@ -4,8 +4,7 @@
 # Python cache
 __pycache__/
 
-# Logs and temporary files
-*.log
+# Temporäre Files
 output/complacomplaints_cleaned.csv
 output/vektoren.joblib
 
