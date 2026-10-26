@@ -48,7 +48,7 @@ def lda_modell(k):
                                     random_state=42, n_jobs=-1)
     return lda
 
-# %% Kohärenz aufbereiten
+# Kohärenz aufbereiten
 stichprobe = dataframe.sample(n=15000, random_state=42)
 # stichprobe = dataframe.sample(n=10, random_state=42)
 
@@ -67,7 +67,7 @@ def kohaerenz(themen, texte_token):
     # processes=1, da sonst Fehler auftreten können, wenn zu viele Prozesse gestartet werden
     return modell.get_coherence()
 
-# %% Kohärenz für div. k berechnen
+# Kohärenz für div. k berechnen
 ergebnisse = []
 for k in [4, 6, 8, 10, 12]:
     lsa_k = lsa_modell(k)
@@ -93,8 +93,8 @@ plt.savefig(AUSGABE / "themen_kohaerenz.png", dpi=150)
 # plt.show()
 plt.close()
 
-# %% LSA
-#k = 8
+# LSA
+# k = 8
 TOLERANZ = 0.01
 
 beste_kohaerenz = koherenz_tabelle["Kohärenz LDA"].max()
@@ -111,7 +111,7 @@ themen_lsa = meist_woerter(lsa, woerter_tfidf)
 themen_anzeigen(themen_lsa)
 print(f"Erklärte Varianz TF-IDF: {lsa.explained_variance_ratio_.sum():.2%}")
 
-# %% LDA
+# LDA
 lda = lda_modell(k)
 lda_dokumente = lda.fit_transform(bow_X)
 themen_lda = meist_woerter(lda, woerter_bow)
@@ -120,7 +120,7 @@ themen_anzeigen(themen_lda)
 print(f"Perplexity LDA: {lda.perplexity(bow_X):.1f}")
 
 
-# %% Aufteilung Thema zu Dokument
+# Aufteilung Thema zu Dokument
 dataframe["LSA_Thema"] = lsa_dokumente.argmax(axis=1)
 dataframe["LDA_Thema"] = lda_dokumente.argmax(axis=1)
 
@@ -129,20 +129,20 @@ print(dataframe["LDA_Thema"].value_counts(normalize=True) * 100)
 print("Beispiel für Themenzuordnung:")
 print(dataframe["LSA_Thema"].value_counts(normalize=True) * 100)
 
-# %% Plausibilitätsprüfung mit Produktkategorie
+# Plausibilitätsprüfung mit Produktkategorie
 pd.set_option("display.width", 200)
 abgleich = pd.crosstab(dataframe["LDA_Thema"], dataframe["product"], normalize="index").round(2)
 print("Abgleich LDA-Thema mit Produktkategorie:")
 print(abgleich)
 abgleich.to_csv(AUSGABE / "themen_produkt_abgleich.csv", index=True, encoding="utf-8")
 
-# %% Grafische Darstellung der Themenzuordnung
+# Grafische Darstellung der Themenzuordnung
 warnings.filterwarnings("ignore", category=FutureWarning, module="sklearn.manifold")
 grafik = pyLDAvis.lda_model.prepare(lda, bow_X, bow_vektor, mds="mmds", sort_topics=False)
 pyLDAvis.save_html(grafik, str(AUSGABE / "lda_grafik.html"))
 print(f"LDA-Grafik gespeichert: {AUSGABE / 'lda_grafik.html'}")
 
-# %% Themen speichern
+# Themen speichern
 pd.DataFrame({"Thema": range(k), "Top_Woerter": [", ".join(t) for t in themen_lda]}).to_csv(AUSGABE / "themen_lda.csv", index=False, encoding="utf-8")
 pd.DataFrame({"Thema": range(k), "Top_Woerter": [", ".join(t) for t in themen_lsa]}).to_csv(AUSGABE / "themen_lsa.csv", index=False, encoding="utf-8")
 print("Themen gespeichert")
