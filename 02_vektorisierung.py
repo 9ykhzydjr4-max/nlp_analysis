@@ -82,3 +82,10 @@ meist_tfidf[::-1].plot.barh(ax=achsen[1], color="darkorange", title="TF-IDF: sum
 plt.tight_layout()
 plt.savefig(AUSGABE / "complaints_vektorisierung.png", dpi=150)
 plt.show()
+
+joblib.dump({
+    "bow_vectorizer": bow_vectorizer, "bow_X": bow_X,
+    "tfidf_vectorizer": tfidf_vectorizer, "tfidf_X": tfidf_X,
+}, AUSGABE / "vektoren.joblib")
+vergleich.to_csv(AUSGABE / "vektorisierung_top_begriffe.csv", index=False)
+print("Gespeichert")
