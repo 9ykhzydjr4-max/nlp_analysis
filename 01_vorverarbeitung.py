@@ -65,7 +65,7 @@ stoppwoerter = (stoppwoerter | eigene) - verneinungen
 print("Anzahl der Stoppwörter:", len(stoppwoerter))
 
 # %% Lemmatisierung
-TESTING = True
+TESTING = False
 
 if TESTING:
     dataframe = dataframe.sample(n=1000, random_state=42)  # Für Testzwecke eine Stichprobe von 1000 Dokumenten ziehen
@@ -74,7 +74,7 @@ nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])  # Lade das englis
 
 tokens_list = []
 for document in nlp.pipe(dataframe["cleaned_narrative"], batch_size=1000):
-    tokens = [token.lemma_ for token in document if token.text.lower() not in stoppwoerter]
+    tokens = [wort.lemma_ for wort in document if len(wort.lemma_) >= 3 and wort.lemma_ not in stoppwoerter]
     tokens_list.append(tokens)
 
 dataframe["tokens"] = tokens_list
