@@ -12,7 +12,7 @@ from pathlib import Path
 
 PROJECT = Path(__file__).parent
 
-# Skripte
+# Skripte für Verarbeitung
 SKRIPTE = [
     "01_vorverarbeitung.py",
     "02_vektorisierung.py",
