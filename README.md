@@ -23,7 +23,8 @@ Beschreibung des Projekts
 
 # Vorgehen
 
-| Schritt  | Skript | Inhalt | Bilbiothek |
+| Schritt | Skript | Inhalt | Bilbiothek |
+|---|---|---|---|
 | 1 | 01_vorverarbeitung.py | Leere Einträge und Duplikate entfernen, Platzhalter (xxxx), Zahlen und Sonderzeichen entfernen, Lemmatisierung, Stoppwörter entfernen (Verneinungen bleiben erhalten) | pandas, re, nltk, spaCy |
 | 2 | 02_vektorisierung.py | Bag-of-Words und TF-IDF (Uni- und Bigramme, min_df=10, max_df=0.5, 5.000 Begriffe), Vergleich beider Verfahren | scikit-learn, matplotlib |
 | 3 | 03_themenextration.py | Bestimmung der Themenanzahl k über die c_v-Kohärenz, Themenextraktion mit LSA (TF-IDF) und LDA (Bag-of-Words), Abgleich mit den Produktkategorien, interaktive Visualisierung | cikit-learn, gensim, pyLDAvis |
@@ -31,6 +32,7 @@ Beschreibung des Projekts
 
 # Projektstruktur
 
+```text
 npl_analysis/
 |-- data
 |   |-- complaints_processes.csv        # Rohdaten (nicht in Repository)
