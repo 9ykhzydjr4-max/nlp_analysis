@@ -132,5 +132,15 @@ Es wird eine Stichprobe von 1000 Datensätzen verarbeitet.
     - LSA: bündelt die Wörter, die Themen können weniger unterschieden werden
     - LDA: interpretiert die Themen klarer
 
+---
 
+# Reproduzierbarkeit
+
+- Abhängigkeiten in `requirements.txt` dokumentiert
+- Ergebnisse in `output/` gespeichert, reproduzierbar durch erneuter Ausführung
+- Versionierter Code über GitHub
+
+# Author
+
+Stefan Ganahl
 
