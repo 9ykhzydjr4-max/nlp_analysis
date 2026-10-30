@@ -72,12 +72,12 @@ ergebnisse = []
 for k in [4, 6, 8, 10, 12]:
     lsa_k = lsa_modell(k)
     lsa_k.fit(bow_X_sp)
-    themen_lsa = meist_woerter(lsa_k, woerter_bow)
+    themen_lsa = meist_woerter(lsa_k, woerter_tfidf)
     koh_lsa = kohaerenz(themen_lsa, texte_token)
 
     lda_k = lda_modell(k)
     lda_k.fit(tfidf_X_sp)
-    themen_lda = meist_woerter(lda_k, woerter_tfidf)
+    themen_lda = meist_woerter(lda_k, woerter_bow)
     koh_lda = kohaerenz(themen_lda, texte_token)
 
     ergebnisse.append({"k": k, "Kohärenz LSA": round(koh_lsa, 3), "Kohärenz LDA": round(koh_lda, 3)})
