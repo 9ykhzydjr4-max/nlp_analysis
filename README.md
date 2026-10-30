@@ -102,17 +102,19 @@ Es wird eine Stichprobe von 1000 Datensätzen verarbeitet.
 | `complaints_cleaned.csv` | Bereinigte und lemmatisierte Beschwerdetexte |
 | `complaints_vektorisierung.csv /.png` | Häufigste Wörter in BoW und TF-IDF |
 | `lda_grafik.html` | Grafische Darstellung von LDA |
-| `themen_kohaerenz.csv / .png` | c_v Kohärenz von LSA und LDA für k = 4 bis k = 12 |
+| `themen_kohaerenz.csv / .png` | c_v Kohärenz von LSA und LDA für `k = 4` bis `k = 12` |
 | `themen_lsa.csv, themen_lda.csv` | Themen mit ihren Top-Wörtern |
 | `themen_produkt_abgleich.csv` | Abgleich der LDA-Themen mit den Produktkategorien |
 | `vektoren.joblib` | BoW- und TF-IDF-Matrizen inklusive Vektorisierer |
 | `vektorisierung_top_begriffe.csv` | Verlgeich der Top-Begriffe von BoW und TF-IDF |
 
+---
+
 # Erkenntnissinterpretation
 
 - Datensätze waren schon vorverarbeitet (Kleinschreibung, keine Satzzeichen, Standard-Stoppwörter entfernt)
 - Bei der Vektorisierung hebt BoW die häufigkeit der Wörter hervor, TF-IDF die unterschiedliche Begriffe
-- Themenanzahl: Für das Modell wurde k = 8 durch die Tolerenz = 0.01 gewählt. 
+- Themenanzahl: Für das Modell wurde `k = 8` durch die `Tolerenz = 0.01` gewählt. 
 - Themen: 
     - LSA: bündelt die Wörter, die Themen können weniger unterschieden werden
     - LDA: interpretiert die Themen klarer
