@@ -127,7 +127,7 @@ Es wird eine Stichprobe von 1000 Datensätzen verarbeitet.
 
 - Datensätze waren schon vorverarbeitet (Kleinschreibung, keine Satzzeichen, Standard-Stoppwörter entfernt)
 - Bei der Vektorisierung hebt BoW die häufigkeit der Wörter hervor, TF-IDF die unterschiedliche Begriffe
-- Themenanzahl: Für das Modell wurde `k = 8` durch die `Tolerenz = 0.01` gewählt. 
+- Themenanzahl: Für das Modell wurde `k = 4` durch die `Tolerenz = 0.01` gewählt. 
 - Themen: 
     - LSA: bündelt die Wörter, die Themen können weniger unterschieden werden
     - LDA: interpretiert die Themen klarer
