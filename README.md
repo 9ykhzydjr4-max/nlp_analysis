@@ -56,5 +56,62 @@ npl_analysis/
 |-- main.py
 |-- requirements.txt
 
-Die Dateien "complaints_processes.csv, complaints_cleaned.csv, vektoren.joblib" wurden aufgrund der Dateigröße per .gitignore von der Versionskontrolle ausgeschlossen. 
+Die Dateien "complaints_processes.csv, complaints_cleaned.csv, vektoren.joblib" wurden 
+aufgrund der Dateigröße per .gitignore von der Versionskontrolle ausgeschlossen 
+und nicht in das Repository geladen. 
+
 Die Ergebnisse wurden mittels den Skipten aus den Rohdaten erzeugt.
+
+# Technische Anwendung
+
+Voraussetzung: Python 3.12
+Entwicklungsumgebung: VS Code V1.143.0 unter Windows 11
+
+1. Repository klonen:
+        git clone https://github.com/9ykhzydjr4-max/nlp_analysis.git
+        cd nlp_analysis
+
+Installation:   
+        pip install -r requirements.txt
+
+Datensatz bereit stellen:
+        Download: https://www.kaggle.com/datasets/shashwatwork/consume-complaints-dataset-fo-nlp
+        Datei entpacken und im Verzeichnis data/ ablegen.
+
+
+# Ausführung
+
+Gesamte Analyse: 
+        python main.py          # Durchführung aller Schritte, Dauer ca. 20min
+
+Analyse in Schritten:
+        python main.py --ab 2   # Vektorisierung, Vorverarbeitung ist schon erfolgt
+        python main.py --ab 3   # Themenextraktion
+
+Für schnelle Testläufe kann im Skript 01_vorverarbietung.py der Wert TESTING = True gesetzt werden.
+Es wird eine Stichprobe von 1000 Datensätzen verarbeitet. 
+
+# Ergebnisse
+
+|---|---|
+| Datei | Inhalt |
+| complaints_cleaned.csv | Bereinigte und lemmatisierte Beschwerdetexte |
+| complaints_vektorisierung.csv /.png | Häufigste Wörter in BoW und TF-IDF |
+| lda_grafik.html | Grafische Darstellung von LDA |
+| themen_kohaerenz.csv / .png | c_v Kohärenz von LSA und LDA für k = 4 bis k = 12 |
+| themen_lsa.csv, themen_lda.csv | Themen mit ihren Top-Wörtern |
+| themen_produkt_abgleich.csv | Abgleich der LDA-Themen mit den Produktkategorien |
+| vektoren.joblib | BoW- und TF-IDF-Matrizen inklusive Vektorisierer |
+| vektorisierung_top_begriffe.csv | Verlgeich der Top-Begriffe von BoW und TF-IDF |
+
+# Erkentnissinterpretation
+
+    * Datensätze waren schon vorverarbeitet (Kleinschreibung, keine Satzzeichen, Standard-Stoppwörter entfernt)
+    * Bei der Vektorisierung hebt BoW die häufigkeit der Wörter hervor, TF-IDF die unterschiedliche Begriffe
+    * Themenanzahl: Für das Modell wurde k = 8 durch die Tolerenz = 0.01 gewählt. 
+    * Themen: 
+        - LSA: bündelt die Wörter, die Themen können weniger unterschieden werden
+        - LDA: interpretiert die Themen klarer
+        
+
+
