@@ -55,6 +55,7 @@ npl_analysis/
 |-- README.md
 |-- main.py
 |-- requirements.txt
+```
 
 Die Dateien "complaints_processes.csv, complaints_cleaned.csv, vektoren.joblib" wurden 
 aufgrund der Dateigröße per .gitignore von der Versionskontrolle ausgeschlossen 
@@ -67,7 +68,7 @@ Die Ergebnisse wurden mittels den Skipten aus den Rohdaten erzeugt.
 Voraussetzung: Python 3.12
 Entwicklungsumgebung: VS Code V1.143.0 unter Windows 11
 
-1. Repository klonen:
+Repository klonen:
         git clone https://github.com/9ykhzydjr4-max/nlp_analysis.git
         cd nlp_analysis
 
@@ -112,6 +113,6 @@ Es wird eine Stichprobe von 1000 Datensätzen verarbeitet.
     * Themen: 
         - LSA: bündelt die Wörter, die Themen können weniger unterschieden werden
         - LDA: interpretiert die Themen klarer
-        
+
 
 
