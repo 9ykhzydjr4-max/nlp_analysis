@@ -34,7 +34,7 @@ def sparsamkeit_X(X):
     # "Anteil der Nullen in Matrix"
     n_zeros = (X != 0).sum()
     n_elements = X.shape[0] * X.shape[1]
-    sparsity = n_zeros / n_elements
+    sparsity = 1 - n_zeros / n_elements
     return sparsity
 
 print(f"Bag-of-Words Sparsamkeit: {sparsamkeit_X(bow_X):.2%}")
