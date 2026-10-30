@@ -23,7 +23,7 @@ print("Geladene Datei:", pfad)
 
 texte = dataframe["narrative"]
 
-for wort in ["the" , "and", "not", "never", "xxxx"]:
+for wort in ["the" , "and", "not", "never", "xx"]:
     anzahl = texte.str.contains(rf"\b{wort}\b").sum()
     print(f"Das Wort '{wort}' kommt {anzahl} mal in der Spalte 'narrative' vor.")
 
@@ -37,6 +37,8 @@ print(f"Datensätze Vorher: {vorher}, nachher: {len(dataframe)}")
 
 # Sonderzeichen und Zahlen entfernen, überflüssige Leerzeichen entfernen
 def clean_text(text):
+    # Platzhalter entfernen
+    text = re.sub(r"\bx{2,}\b", " ", text)
     # Entferne Sonderzeichen und Zahlen
     text = re.sub(r"[^a-zA-Z\s]", " ", text)
     # Entferne überflüssige Leerzeichen
