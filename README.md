@@ -8,6 +8,8 @@ Beschreibung des Projekts
 - Kaggle-Datensatz ist ein Beispieldatensatz, der unstrukturierte Consumer Complaints enthält
 - Zur Analyse wurden keine echten kommunalen Bürgerbeschwerden verwendet. 
 
+---
+
 # Aufgabenerfüllung
 
 | Anforderung | Umsetzung |
@@ -21,6 +23,8 @@ Beschreibung des Projekts
 | Ergebnissdiskussion | Ausgabe in Verzeichnis `output/` |
 | Abhängigkeiten | Dokumentation in `requirenment.txt` |
 
+---
+
 # Vorgehen
 
 | Schritt | Skript | Inhalt | Bilbiothek |
@@ -29,6 +33,8 @@ Beschreibung des Projekts
 | 2 | 02_vektorisierung.py | Bag-of-Words und TF-IDF (Uni- und Bigramme, min_df=10, max_df=0.5, 5.000 Begriffe), Vergleich beider Verfahren | scikit-learn, matplotlib |
 | 3 | 03_themenextration.py | Bestimmung der Themenanzahl k über die c_v-Kohärenz, Themenextraktion mit LSA (TF-IDF) und LDA (Bag-of-Words), Abgleich mit den Produktkategorien, interaktive Visualisierung | cikit-learn, gensim, pyLDAvis |
 | - | main.py | Führt alle drei Skripte nacheinander aus und listet die erzeugten Dateien auf | - |
+
+---
 
 # Projektstruktur
 
@@ -63,6 +69,8 @@ und nicht in das Repository geladen.
 
 Die Ergebnisse wurden mittels den Skipten aus den Rohdaten erzeugt.
 
+---
+
 # Technische Anwendung
 
 Voraussetzung: Python 3.12
@@ -81,6 +89,9 @@ Datensatz bereitstellen:
         Download: https://www.kaggle.com/datasets/shashwatwork/consume-complaints-dataset-fo-nlp
         Datei entpacken und im Verzeichnis data/ ablegen.
  ```
+
+ ---
+
 # Ausführung
 
 Gesamte Analyse:
@@ -94,6 +105,8 @@ Analyse in Schritten:
 ```
 Für schnelle Testläufe kann im Skript `01_vorverarbietung.py` der Wert `TESTING = True` gesetzt werden.
 Es wird eine Stichprobe von 1000 Datensätzen verarbeitet. 
+
+---
 
 # Ergebnisse
 
