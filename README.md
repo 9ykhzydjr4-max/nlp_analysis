@@ -12,14 +12,14 @@ Beschreibung des Projekts
 
 | Anforderung | Umsetzung |
 |---|---|
-| Beispieldatenqulle | Kaggel-Datensatz shashwatwork/consume-complaints-dataset-fo-nlp |
-| Laden der Datenquelle | Daten wurden nach Download im Projektordner/Repository /data abgelegt |
+| Beispieldatenquelle | Kaggel-Datensatz shashwatwork/consume-complaints-dataset-fo-nlp |
+| Laden der Datenquelle | Daten wurden nach Download im Projektordner/Repository `/data` abgelegt |
 | GitHub-Repository | offenes GitHub-Repository (9ykhzydjr4-max/nlp_analysis.git) |
 | Vorverarbeitung | Bereinigung der Texte: Duplikate entfernen, Platzhalter/Sonderzeichen/Zahlen entfernen, Lemmatisierung, Stoppwörter entfernen, Verneinungen erhalten |
 | Vektorisierung | Anwendung zwei Methoden: Bag-of-Words (ContVectorizer) und TF-IDF (TfidfVecotizer) |
 | Semantishche Analyse | Anwendung zwei Verfahren: LDA (Latent Dirichlet Allocation) und LSA (Latent Semantic Analysis) |
 | Ergebnissdiskussion | Ausgabe in Verzeichnis /output |
-| Abhängigkeiten | Dokumentation in requirenment.txt |
+| Abhängigkeiten | Dokumentation in `requirenment.txt` |
 
 # Vorgehen
 
@@ -57,8 +57,8 @@ npl_analysis/
 |-- requirements.txt
 ```
 
-Die Dateien "complaints_processes.csv, complaints_cleaned.csv, vektoren.joblib" wurden 
-aufgrund der Dateigröße per .gitignore von der Versionskontrolle ausgeschlossen 
+Die Dateien `complaints_processes.csv, complaints_cleaned.csv, vektoren.joblib` wurden 
+aufgrund der Dateigröße per `.gitignore` von der Versionskontrolle ausgeschlossen 
 und nicht in das Repository geladen. 
 
 Die Ergebnisse wurden mittels den Skipten aus den Rohdaten erzeugt.
@@ -69,30 +69,30 @@ Voraussetzung: Python 3.12
 Entwicklungsumgebung: VS Code V1.143.0 unter Windows 11
 
 Repository klonen:
-        ```bash
+```bash
         git clone https://github.com/9ykhzydjr4-max/nlp_analysis.git
         cd nlp_analysis
-        ```        
+```        
 Installation:
-        ```bash
+```bash
         pip install -r requirements.txt
-        ```
+```
 Datensatz bereitstellen:
-        ```bash
+ ```bash
         Download: https://www.kaggle.com/datasets/shashwatwork/consume-complaints-dataset-fo-nlp
         Datei entpacken und im Verzeichnis data/ ablegen.
-        ```
+ ```
 # Ausführung
 
 Gesamte Analyse:
-        ```bash 
+```bash 
         python main.py          # Durchführung aller Schritte, Dauer ca. 20min
-        ```
+ ```
 Analyse in Schritten:
-        ```bash
+ ```bash
         python main.py --ab 2   # Vektorisierung, Vorverarbeitung ist schon erfolgt
         python main.py --ab 3   # Themenextraktion
-        ```
+```
 Für schnelle Testläufe kann im Skript 01_vorverarbietung.py der Wert TESTING = True gesetzt werden.
 Es wird eine Stichprobe von 1000 Datensätzen verarbeitet. 
 
