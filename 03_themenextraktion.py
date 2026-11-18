@@ -110,6 +110,7 @@ print(f"Gewählt: k = {k}")
 lsa = lsa_modell(k)
 lsa_dokumente = lsa.fit_transform(tfidf_X)
 themen_lsa = meist_woerter(lsa, woerter_tfidf)
+print("\n--- LSA-Themen ---")
 themen_anzeigen(themen_lsa)
 print(f"Erklärte Varianz TF-IDF: {lsa.explained_variance_ratio_.sum():.2%}")
 
@@ -117,6 +118,7 @@ print(f"Erklärte Varianz TF-IDF: {lsa.explained_variance_ratio_.sum():.2%}")
 lda = lda_modell(k)
 lda_dokumente = lda.fit_transform(bow_X)
 themen_lda = meist_woerter(lda, woerter_bow)
+print("\n--- LDA-Themen ---")
 themen_anzeigen(themen_lda)
 # print(f"Erklärte Varianz BoW: {lda.explained_variance_ratio_.sum():.2%}")
 print(f"Perplexity LDA: {lda.perplexity(bow_X):.1f}")
@@ -148,4 +150,48 @@ print(f"LDA-Grafik gespeichert: {AUSGABE / 'lda_grafik.html'}")
 pd.DataFrame({"Thema": range(k), "Top_Woerter": [", ".join(t) for t in themen_lda]}).to_csv(AUSGABE / "themen_lda.csv", index=False, encoding="utf-8")
 pd.DataFrame({"Thema": range(k), "Top_Woerter": [", ".join(t) for t in themen_lsa]}).to_csv(AUSGABE / "themen_lsa.csv", index=False, encoding="utf-8")
 print("Themen gespeichert")
+
+# Übersicht der Themenzuordnung speichern
+# Bei einem anderen k oder geänderten Daten müssen sie neu geprüft werden
+bezeichungen = {
+    0: "Inkasso und Schuldeneintreibung",
+    1: "Fehlerhafte Einträge in Kreditauskünften",
+    2: "Kredite und Hypotheken",
+    3: "Schriftverkehr und Widersprüche",
+    4: "Verspätete Zahlungen und Kredit-Score",
+    5: "Kreditkarten und Bankkonten",
+    6: "Identitätsdiebstahl und Kontodaten", 
+    7: "Rechtliche Ansprüche",
+}
+
+anzahl = dataframe["LDA_Thema"].value_counts()
+uebersicht = pd.DataFrame({
+    "Thema": [t + 1 for t in range(k)],  
+    "Bezeichnung": [bezeichungen.get(t, f"Thema {t + 1}") for t in range(k)], 
+    "Dokumente": [int(anzahl.get(t, 0)) for t in range(k)],
+    "Anteil_%": [round(anzahl.get(t, 0) / len(dataframe) * 100, 1) for t in range(k)],
+    "Keywords": [", ".join(themen_lda[t][:8]) for t in range(k)],
+    "Hauptkategorie": [abgleich.loc[t].idxmax() for t in range(k)],
+    "Anteil_Hauptkategorie_%": [round(abgleich.loc[t].max() * 100) for t in range(k)],
+})
+
+uebersicht = uebersicht.sort_values("Anteil_%", ascending=False)
+uebersicht.to_csv(AUSGABE / "themen_lda_uebersicht.csv", index=False, encoding="utf-8")
+print("Übersicht der Themen:")
+print(uebersicht[["Thema", "Bezeichnung", "Anteil_%", "Hauptkategorie"]])
+
+# Anteile der Dokumente als Grafik
+fig, ax = plt.subplots(figsize=(10, 5))
+daten = uebersicht.sort_values("Anteil_%")
+ax.barh(daten["Bezeichnung"], daten["Anteil_%"], color="steelblue")
+for y, wert in enumerate(daten["Anteil_%"]):
+    ax.text(wert + 0.3, y, f"{wert:.1f}%", va="center")
+ax.set_xlim(0, daten["Anteil_%"].max() * 1.15)
+ax.set_xlabel("Anteil der Beschwerden (%)")
+ax.set_title(f"LDA-Themen (k= {k}): Anteil der Beschwerden")
+plt.tight_layout()
+plt.savefig(AUSGABE / "themen_lda_anteile.png", dpi=150)
+plt.close()
+print("Themenübersicht gespeichert")
+
 
