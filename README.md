@@ -47,6 +47,8 @@ npl_analysis/
 |   |-- complaints_vektorisierung.csv
 |   |-- complaints_vektorisierung.png
 |   |-- lda_grafik.html
+|   |-- themen_lda_anteile.png
+|   |-- themen_lda_uebersicht.csv
 |   |-- themen_kohaerenz.csv
 |   |-- themen_kohaerenz.png
 |   |-- themen_lda.csv
@@ -116,6 +118,8 @@ Es wird eine Stichprobe von 1000 Datensätzen verarbeitet.
 | `complaints_vektorisierung.csv /.png` | Häufigste Wörter in BoW und TF-IDF |
 | `lda_grafik.html` | Grafische Darstellung von LDA |
 | `themen_kohaerenz.csv / .png` | c_v Kohärenz von LSA und LDA für `k = 4` bis `k = 12` |
+| `themen_lda_anteile.png` | Finale Themenübersicht, Grafik |
+| `themen_lda_uebersicht.csv` | Finale Themenübersicht, Tabelle |
 | `themen_lsa.csv, themen_lda.csv` | Themen mit ihren Top-Wörtern |
 | `themen_produkt_abgleich.csv` | Abgleich der LDA-Themen mit den Produktkategorien |
 | `vektoren.joblib` | BoW- und TF-IDF-Matrizen inklusive Vektorisierer |
