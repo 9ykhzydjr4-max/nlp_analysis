@@ -96,7 +96,6 @@ plt.savefig(AUSGABE / "themen_kohaerenz.png", dpi=150)
 plt.close()
 
 # LSA
-# k = 8
 TOLERANZ = 0.01
 
 beste_kohaerenz = koherenz_tabelle["Kohärenz LDA"].max()

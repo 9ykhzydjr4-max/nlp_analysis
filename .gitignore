@@ -5,7 +5,7 @@
 __pycache__/
 
 # Temporäre Files
-output/complacomplaints_cleaned.csv
+output/complaints_cleaned.csv
 output/vektoren.joblib
 
 # Local data files
