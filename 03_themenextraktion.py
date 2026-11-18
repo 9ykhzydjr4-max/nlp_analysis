@@ -1,4 +1,6 @@
 from pathlib import Path
+import matplotlib
+matplotlib.use("Agg")  # Grafiken nur speichern, nicht anzeigen
 from matplotlib import cm
 import pandas as pd
 import joblib
@@ -45,7 +47,7 @@ def lsa_modell(k):
 def lda_modell(k):
     lda = LatentDirichletAllocation(n_components=k, learning_method="online",
                                     batch_size=2048, max_iter=10,
-                                    random_state=42, n_jobs=-1)
+                                    random_state=42, n_jobs=2)
     return lda
 
 # Kohärenz aufbereiten
