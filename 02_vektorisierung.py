@@ -81,7 +81,8 @@ meist_bow[::-1].plot.barh(ax=achsen[0], color="steelblue", title="Bag-of-Words: 
 meist_tfidf[::-1].plot.barh(ax=achsen[1], color="darkorange", title="TF-IDF: summiertes Gewicht")
 plt.tight_layout()
 plt.savefig(AUSGABE / "complaints_vektorisierung.png", dpi=150)
-plt.show()
+#plt.show()
+plt.close()
 
 joblib.dump({
     "bow_vectorizer": bow_vectorizer, "bow_X": bow_X,
